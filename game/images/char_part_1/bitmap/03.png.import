@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/03.png-60b3e25b5e8d006976f76d4a9625d874.res"
+
+[deps]
+
+source_file="res://images/char_part_1/bitmap/03.png"
+dest_files=[ "res://.import/03.png-60b3e25b5e8d006976f76d4a9625d874.res" ]
+
+[params]
+
+create_from=0
+threshold=0.5

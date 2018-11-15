@@ -1,0 +1,188 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://character/character.gd" type="Script" id=1]
+[ext_resource path="res://character/images/body.png" type="Texture" id=2]
+[ext_resource path="res://character/images/upper_arm_r.png" type="Texture" id=3]
+[ext_resource path="res://character/images/fore_arm_r.png" type="Texture" id=4]
+[ext_resource path="res://character/images/upper_arm_l.png" type="Texture" id=5]
+[ext_resource path="res://character/images/fore_arm_l.png" type="Texture" id=6]
+[ext_resource path="res://images/char_part_1/normal/01.png" type="Texture" id=7]
+[ext_resource path="res://images/char_part_0/normal/01.png" type="Texture" id=8]
+[ext_resource path="res://character/images/hip.png" type="Texture" id=9]
+[ext_resource path="res://character/images/leg_r.png" type="Texture" id=10]
+[ext_resource path="res://character/images/shin_r.png" type="Texture" id=11]
+[ext_resource path="res://character/images/foot_r.png" type="Texture" id=12]
+[ext_resource path="res://character/images/leg_l.png" type="Texture" id=13]
+[ext_resource path="res://character/images/shin_l.png" type="Texture" id=14]
+[ext_resource path="res://character/images/foot_l.png" type="Texture" id=15]
+[ext_resource path="res://character/images/complete.png" type="Texture" id=16]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[node name="character" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+
+[node name="base" type="Sprite" parent="." index="1"]
+
+[node name="body" type="Sprite" parent="base" index="0"]
+
+position = Vector2( 12.151, 47.0626 )
+texture = ExtResource( 2 )
+
+[node name="arm_r" type="Sprite" parent="base/body" index="0"]
+
+position = Vector2( -56.0302, -1.03876 )
+texture = ExtResource( 3 )
+
+[node name="fore_arm_r" type="Sprite" parent="base/body/arm_r" index="0"]
+
+position = Vector2( 6.17281, 79.0868 )
+texture = ExtResource( 4 )
+
+[node name="bone_display" type="Node2D" parent="base/body/arm_r/fore_arm_r" index="0"]
+
+[node name="arm_l" type="Sprite" parent="base/body" index="1"]
+
+position = Vector2( 48.4082, -29.9243 )
+z_index = -5
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="fore_arm_l" type="Sprite" parent="base/body/arm_l" index="0"]
+
+position = Vector2( 15.3358, 67.4773 )
+texture = ExtResource( 6 )
+
+[node name="bone_display" type="Node2D" parent="base/body/arm_l/fore_arm_l" index="0"]
+
+[node name="head" type="TextureButton" parent="base/body" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -243.0
+margin_top = -397.0
+margin_right = 269.0
+margin_bottom = 115.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 7 )
+_sections_unfolded = [ "Textures", "Z Index" ]
+
+[node name="hair" type="TextureButton" parent="base/body/head" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -2.0
+margin_top = 4.0
+margin_right = 510.0
+margin_bottom = 516.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 8 )
+_sections_unfolded = [ "Textures" ]
+
+[node name="hip" type="Sprite" parent="base" index="1"]
+
+position = Vector2( 14.5206, 104.652 )
+z_index = -1
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="leg_r" type="Sprite" parent="base/hip" index="0"]
+
+position = Vector2( -38.054, 15.755 )
+z_index = -1
+texture = ExtResource( 10 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="shin_r" type="Sprite" parent="base/hip/leg_r" index="0"]
+
+position = Vector2( 0.690781, 34.9592 )
+z_index = -1
+texture = ExtResource( 11 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="foot_r" type="Sprite" parent="base/hip/leg_r/shin_r" index="0"]
+
+position = Vector2( -0.5112, 50.4423 )
+texture = ExtResource( 12 )
+
+[node name="bone_display" type="Node2D" parent="base/hip/leg_r/shin_r/foot_r" index="0"]
+
+visible = false
+
+[node name="leg_l" type="Sprite" parent="base/hip" index="1"]
+
+position = Vector2( 29.0091, 4.96011 )
+z_index = -3
+texture = ExtResource( 13 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="shin_l" type="Sprite" parent="base/hip/leg_l" index="0"]
+
+position = Vector2( 5.77969, 18.1866 )
+z_index = -1
+texture = ExtResource( 14 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="foot_l" type="Sprite" parent="base/hip/leg_l/shin_l" index="0"]
+
+position = Vector2( 5.65533, 49.5719 )
+texture = ExtResource( 15 )
+
+[node name="bone_display" type="Node2D" parent="base/hip/leg_l/shin_l/foot_l" index="0"]
+
+visible = false
+
+[node name="bone_display" type="Node2D" parent="base/hip" index="2"]
+
+[node name="complete" type="Sprite" parent="." index="2"]
+
+visible = false
+modulate = Color( 1, 1, 1, 0.447529 )
+texture = ExtResource( 16 )
+_sections_unfolded = [ "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="pressed" from="base/body/head" to="." method="_on_head_pressed"]
+
+[connection signal="pressed" from="base/body/head/hair" to="." method="_on_hair_pressed"]
+
+
