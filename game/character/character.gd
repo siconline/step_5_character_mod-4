@@ -4,6 +4,7 @@ extends KinematicBody2D
 # switch between COLOR or STYLE
 var state = 0 # variable modified by char_mod.gd --> _on_color_pressed() or _on_style_pressed()
 
+
 # HAIR COLOR PROPERTIES
 var hair_color = 0
 var arr_hair_color = \
@@ -57,21 +58,15 @@ func _ready():
 func _process(delta):
 	
 	
-	# current texture
-	_change_hair_texture(hair_texture)
-
-	# current color
-	_change_hair_color(hair_color)
-	
-	
-	# current texture
-	_change_head_texture(head_texture)
-	# current color
-	_change_head_color(head_color)
+	# current HAIR
+	_change_texture(hair, hair_texture)
+	_change_color(hair, hair_color)
+	# current HEAD
+	_change_texture(head, head_texture)
+	_change_color(head, head_color)
 
 
 func _on_hair_pressed():
-	
 	if state == 0:
 		hair_texture += 1
 	
@@ -99,22 +94,14 @@ func _on_head_pressed():
 			head_color = 0
 
 
-func _change_hair_texture(value):
-	hair.texture_normal = arr_hair_texture[value]
-	hair.texture_hover = arr_hair_texture_clicked[value]
-	hair.texture_click_mask = arr_hair_texture_bitmap[value]
-func _change_hair_color(value):
-	hair.self_modulate = arr_hair_color[value]
+func _change_texture(part, value):
+	part.texture_normal = get("arr_" + str(part.name) + "_texture")[value]
+	part.texture_hover = get("arr_" + str(part.name) + "_texture_clicked")[value]
+	part.texture_click_mask = get("arr_" + str(part.name) + "_texture_bitmap")[value]
 
 
-func _change_head_texture(value):
-	head.texture_normal = arr_head_texture[value]
-	head.texture_hover = arr_head_texture_clicked[value]
-	head.texture_click_mask = arr_head_texture_bitmap[value]
-func _change_head_color(value):
-	head.self_modulate = arr_head_color[value]
-
-
+func _change_color(part, value):
+	part.self_modulate = get("arr_" + str(part.name) + "_color")[value]
 
 
 func list_files_in_directory(path):
@@ -122,12 +109,14 @@ func list_files_in_directory(path):
     var dir = Directory.new()
     dir.open(path)
     dir.list_dir_begin()
+	
     while true:
         var file = dir.get_next()
         if file == "":
             break
         elif file.ends_with(".import"):
             files.append(file.replace(".import", ""))
+			
     dir.list_dir_end()
     return files
 
