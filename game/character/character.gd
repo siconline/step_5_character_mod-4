@@ -52,16 +52,6 @@ func _ready():
 	fill_array_textures(arr_head_texture_clicked, 'char_part_1', 'clicked')
 	fill_array_textures(arr_head_texture_bitmap, 'char_part_1', 'bitmap')
 	
-	arr_hair_texture.sort()
-	arr_hair_texture_clicked.sort()
-	arr_hair_texture_bitmap.sort()
-	
-	arr_head_texture.sort()
-	arr_head_texture_clicked.sort()
-	arr_head_texture_bitmap.sort()
-	
-	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -69,6 +59,7 @@ func _process(delta):
 	
 	# current texture
 	_change_hair_texture(hair_texture)
+
 	# current color
 	_change_hair_color(hair_color)
 	
@@ -136,8 +127,8 @@ func list_files_in_directory(path):
         var file = dir.get_next()
         if file == "":
             break
-        elif not file.begins_with(".") && file.ends_with(".png"):
-            files.append(file)
+        elif file.ends_with(".import"):
+            files.append(file.replace(".import", ""))
 
     dir.list_dir_end()
 
