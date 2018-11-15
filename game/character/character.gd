@@ -100,17 +100,17 @@ func _on_head_pressed():
 
 
 func _change_hair_texture(value):
-	hair.texture_normal = load(arr_hair_texture[value])
-	hair.texture_hover = load(arr_hair_texture_clicked[value])
-	hair.texture_click_mask = load(arr_hair_texture_bitmap[value])
+	hair.texture_normal = arr_hair_texture[value]
+	hair.texture_hover = arr_hair_texture_clicked[value]
+	hair.texture_click_mask = arr_hair_texture_bitmap[value]
 func _change_hair_color(value):
 	hair.self_modulate = arr_hair_color[value]
 
 
 func _change_head_texture(value):
-	head.texture_normal = load(arr_head_texture[value])
-	head.texture_hover = load(arr_head_texture_clicked[value])
-	head.texture_click_mask = load(arr_head_texture_bitmap[value])
+	head.texture_normal = arr_head_texture[value]
+	head.texture_hover = arr_head_texture_clicked[value]
+	head.texture_click_mask = arr_head_texture_bitmap[value]
 func _change_head_color(value):
 	head.self_modulate = arr_head_color[value]
 
@@ -122,21 +122,17 @@ func list_files_in_directory(path):
     var dir = Directory.new()
     dir.open(path)
     dir.list_dir_begin()
-
     while true:
         var file = dir.get_next()
         if file == "":
             break
         elif file.ends_with(".import"):
             files.append(file.replace(".import", ""))
-
     dir.list_dir_end()
-
     return files
 
 
 func fill_array_textures(arr, directory, directory_type):
 	var dir = "res://images/" + directory + "/" + directory_type + "/"
 	for file_name in list_files_in_directory(dir):
-		arr.append(dir + file_name)
-	arr.sort()
+		arr.append(load(dir + file_name))
